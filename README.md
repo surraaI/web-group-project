@@ -5,6 +5,6 @@ Group Members
 The following are the group members involved in this project:
 
 1: Loti Yadeta
-2: Roman Ayele
+2: Roman Kebede
 3: Sura Itana      UGR/2347/14
 4: Tinsae Tadesse
