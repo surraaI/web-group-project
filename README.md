@@ -4,7 +4,7 @@ This is the README file for the "Book Library Management" group project on GitHu
 Group Members
 The following are the group members involved in this project:
 
-1: Loti Yadeta
-2: Roman Kebede
+1: Loti Yadeta     UGR/2782/14
+2: Roman Kebede    UGR/0448/14
 3: Sura Itana      UGR/2347/14
-4: Tinsae Tadesse
+4: Tinsae Tadesse  UGR/3556/14
