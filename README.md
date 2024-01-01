@@ -1,5 +1,6 @@
-# Book Library Management
-This is the README file for the "Book Library Management" group project on GitHub. The purpose of this project is to develop a software application for managing a book library. The application will allow users to perform various tasks related to book management, such as adding new books, searching for books, borrowing and returning books, and generating reports.
+# Personal Health Tracker
+Description:
+Personal Health Tracker is a simplified health tracking system for individuals in a local community. This system enables users to maintain basic health information, such as weight, exercise routines, and general well-being. Users can log daily health activities, set simple goals, and view a summary of their progress over time. The primary aim is to promote personal health awareness in a user-friendly way.
 
 Group Members
 The following are the group members involved in this project:
