@@ -1,0 +1,86 @@
+body {
+    color: #fff;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #3d2e57 ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card {
+    padding: 60px 20px;
+    width: 350px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border: none !important;
+    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893);
+    background-color: #5d556b; 
+}
+
+.blue-text {
+    color: rgba(174, 146, 210, 0.893);
+}
+
+.form-control-label {
+    margin-bottom: 0;
+}
+
+input, textarea, button {
+    padding: 8px 15px;
+    border-radius: 5px !important;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    font-size: 16px !important;
+    font-weight: 300;
+}
+
+input:focus, textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(174, 146, 210, 0.893);
+    outline-width: 0;
+    font-weight: 400;
+}
+
+.btn-block {
+    text-transform: uppercase;
+    font-size: 15px !important;
+    font-weight: 400;
+    height: 43px;
+    cursor: pointer;
+}
+
+.btn-block:hover {
+    color: #fff !important;
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+.container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+}
+
+.text-center {
+    text-align: center;
+}
+
+h3 {
+    font-size: 3em; 
+}
+
+.btn-primary {
+    background-color: rgba(174, 146, 210, 0.893); 
+    color: white;
+    font-size: 1.2em; 
+}

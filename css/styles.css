@@ -1,0 +1,94 @@
+
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #3d2e57;
+    color: #fff;
+    }
+
+
+header {
+    background-color: transparent; 
+    color: #fff; 
+    padding: 15px 0;
+}
+
+.navbar {
+    background-color: #343a40; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.navbar-brand {
+    font-size: 24px;
+    color: #fff; 
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    font-size: 18px;
+    margin-right: 20px;
+    transition: color 0.3s ease; 
+}
+
+
+.container {
+    margin-top: 30px;
+}
+
+.card {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 20px;
+    width: 540px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border: none !important;
+    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893);
+    background-color: #5d556b; 
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    color: rgba(174, 146, 210, 0.893);
+}
+
+.form-control {
+    height: 45px;
+}
+
+.btn-primary {
+    background-color: rgba(174, 146, 210, 0.893);
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+}
+
+.btn-primary:hover {
+    background-color: rgba(174, 146, 210, 0.893);
+}
+
+h1, h2, h4 {
+    color: rgba(174, 146, 210, 0.893);
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 24px;
+}
