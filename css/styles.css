@@ -7,11 +7,28 @@ body {
     color: #fff;
     }
 
+    nav {
+        background-color: rgb(141, 120, 170);
+        padding: 10px;
+        text-align: center;
+    }
 
+    nav a {
+        color: #5d556b;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: rgba(174, 146, 210, 0.893);
+    }
 header {
     background-color: transparent; 
     color: #fff; 
-    padding: 15px 0;
+    padding-bottom: 15px;
 }
 
 .navbar {
@@ -44,7 +61,7 @@ header {
     margin-top: 60px;
     margin-bottom: 60px;
     border: none !important;
-    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893);
+    box-shadow: 0 6px 8px 0 rgba(174, 146, 210, 0.893);
     background-color: #5d556b; 
 }
 
@@ -54,11 +71,17 @@ header {
 
 .form-group {
     margin-bottom: 20px;
+
 }
 
 label {
+    margin-bottom: 10px;
+    display: block;
     font-size: 18px;
     color: rgba(174, 146, 210, 0.893);
+}
+input{
+    width: 70vw;
 }
 
 .form-control {
@@ -70,6 +93,7 @@ label {
     border: none;
     padding: 12px 24px;
     font-size: 18px;
+    border-radius: 5px;
 }
 
 .btn-primary:hover {
@@ -91,4 +115,35 @@ h2 {
 
 h4 {
     font-size: 24px;
+}
+/* about us */
+.about-body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #5d556b;
+    color: #fff;
+    }
+.about-body header{
+    background-color: transparent;
+    padding: 10px;
+    text-align: center;
+}
+.content img {
+            
+    width: 50%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    float:left;
+    margin-right: 30px;
+  
+}
+.content {
+    margin-top: 20px;
+    text-align: center;
+}
+.about-body div {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 15px;
 }
