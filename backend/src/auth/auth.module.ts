@@ -8,9 +8,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   HealthRecord,
   HealthRecordSchema,
-} from 'src/health-records/schemas/healthRecord.schema';
-import { User, userSchema } from 'src/users/schemas/user.schema';
-import { HealthRecordsModule } from 'src/health-records/health-records.module';
+} from '../health-records/schemas/healthRecord.schema';
+import { User, userSchema } from '../users/schemas/user.schema';
+import { HealthRecordsModule } from '../health-records/health-records.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './roles.guard';
 

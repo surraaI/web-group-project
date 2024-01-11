@@ -1,4 +1,4 @@
-import { IsNumber, IsString, IsDate, isString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateHealthRecordDto {
   @IsNumber()
@@ -18,10 +18,4 @@ export class CreateHealthRecordDto {
 
   @IsNumber()
   amount_of_water_taker: number;
-
-  @IsDate()
-  date: Date;
-
-
-  userId: string | any;
 }

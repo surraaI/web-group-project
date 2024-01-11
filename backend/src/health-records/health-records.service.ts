@@ -6,12 +6,10 @@ import { CreateHealthRecordDto } from './dto/create-health-record.dto';
 import { UpdateHealthRecordDto } from './dto/update-health-record.dto';
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
-import { User } from 'src/users/schemas/user.schema';
-import { jwtConstants } from 'src/auth/constants';
-import { Role } from 'src/auth/enums/role.enum';
+import { jwtConstants } from '../auth/constants';
+import { Role } from '../auth/enums/role.enum';
 import { UsersService } from '../users/users.service';
-import { request } from 'http';
-
+import { User } from '../users/schemas/user.schema';
 @Injectable()
 export class HealthRecordsService {
   constructor(
@@ -81,7 +79,9 @@ export class HealthRecordsService {
     const user = await this.userModel.findById(userId).exec();
     if (user) {
       // Find the index of the health record within the array
-      const index = user.myhealthRecords.findIndex(record => record.id === id);
+      const index = user.myhealthRecords.findIndex(
+        (record) => record.id === id,
+      );
       if (index !== -1) {
         // Update the specific health record within the array
         user.myhealthRecords[index] = updatedRecord;

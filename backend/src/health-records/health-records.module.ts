@@ -5,12 +5,13 @@ import {
   HealthRecordSchema,
 } from './schemas/healthRecord.schema';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UsersService } from 'src/users/users.service';
-import { User, userSchema } from 'src/users/schemas/user.schema';
-import { UsersModule } from 'src/users/users.module';
+import { UsersService } from '../users/users.service';
+import { User, userSchema } from '../users/schemas/user.schema';
+import { UsersModule } from '../users/users.module';
 import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from 'src/auth/roles.guard';
+import { RolesGuard } from '../auth/roles.guard';
 import { HealthRecordsService } from './health-records.service';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [

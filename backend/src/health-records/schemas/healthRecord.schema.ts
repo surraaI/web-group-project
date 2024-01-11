@@ -4,9 +4,9 @@ import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class HealthRecord extends Document {
-  @Prop()
-  @IsString()
-  userId: string;
+  // @Prop()
+  // @IsString()
+  // userId: string;
 
   @Prop()
   @IsNumber()

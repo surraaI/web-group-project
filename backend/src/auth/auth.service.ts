@@ -2,22 +2,15 @@ import {
   Injectable,
   BadRequestException,
   UnauthorizedException,
-  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from '../users/dto/createUserDto';
 import * as bcrypt from 'bcrypt';
-import { AuthGuard } from './auth.guard';
-import { HealthRecord } from 'src/health-records/schemas/healthRecord.schema';
-import { User } from 'src/users/schemas/user.schema';
-import { UpdateUserDto } from 'src/users/dto/updateUserDto';
-import { Roles } from './roles.decorators';
-import { RolesGuard } from './roles.guard';
-import { Role } from './enums/role.enum';
-import { Model } from 'mongoose';
-import { HealthRecordsService } from 'src/health-records/health-records.service';
-
+import { HealthRecord } from '../health-records/schemas/healthRecord.schema';
+import { User } from '../users/schemas/user.schema';
+import { UpdateUserDto } from '../users/dto/updateUserDto';
+import { HealthRecordsService } from '../health-records/health-records.service';
 @Injectable()
 export class AuthService {
   constructor(

@@ -11,18 +11,14 @@ import {
   Param,
   Delete,
   Req,
-  Header,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from 'src/users/dto/createUserDto';
+import { CreateUserDto } from '../users/dto/createUserDto';
 import { AuthGuard } from './auth.guard';
-import { UpdateUserDto } from 'src/users/dto/updateUserDto';
-import { create } from 'domain';
+import { UpdateUserDto } from '../users/dto/updateUserDto';
 import { Roles } from './roles.decorators';
 import { Role } from './enums/role.enum';
 import { RolesGuard } from './roles.guard';
-import { request } from 'http';
-import { HealthRecord } from 'src/health-records/schemas/healthRecord.schema';
 
 @Controller('auth')
 export class AuthController {
@@ -47,12 +43,6 @@ export class AuthController {
   findAll() {
     return this.authService.findAll();
   }
-
-  // @UseGuards(AuthGuard)
-  // @Get('findUserById/:id')
-  // findUserById(@Request() req, @Param('id') id: string) {
-  //   return this.authService.findUserById(id);
-  // }
 
   @UseGuards(AuthGuard)
   @Put('updateUser/:id')

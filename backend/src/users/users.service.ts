@@ -8,13 +8,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './schemas/user.schema';
 import { CreateUserDto } from './dto/createUserDto';
-import { Role } from 'src/auth/enums/role.enum';
+import { Role } from '../auth/enums/role.enum';
 import { UpdateUserDto } from './dto/updateUserDto';
-import { HealthRecord } from 'src/health-records/schemas/healthRecord.schema';
+import { HealthRecord } from '../health-records/schemas/healthRecord.schema';
 import * as jwt from 'jsonwebtoken';
-import { jwtConstants } from 'src/auth/constants';
+import { jwtConstants } from '../auth/constants';
 import { Request } from 'express';
-
 @Injectable()
 export class UsersService {
   constructor(

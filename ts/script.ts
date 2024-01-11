@@ -291,10 +291,9 @@ tableBody.addEventListener('click', (event) => {
 }
 //login as admin
 const loginAsAdmin = document.getElementById("login-as-admin");
-
 if (loginAsAdmin) {
   loginAsAdmin.addEventListener("click", () => {
-    window.location.href = "/loginAsadmin.html";
+    window.location.href = "loginAsadmin.html";
   });}
 
   
