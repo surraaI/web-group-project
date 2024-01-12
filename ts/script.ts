@@ -296,3 +296,5 @@ if (loginAsAdmin) {
   loginAsAdmin.addEventListener("click", () => {
     window.location.href = "/admin_dashboard.html";
   });}
+
+  
