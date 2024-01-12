@@ -13,9 +13,7 @@ exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("../users/users.service");
 const jwt_1 = require("@nestjs/jwt");
-const createUserDto_1 = require("../users/dto/createUserDto");
 const bcrypt = require("bcrypt");
-const auth_guard_1 = require("./auth.guard");
 const health_records_service_1 = require("../health-records/health-records.service");
 let AuthService = class AuthService {
     constructor(usersService, jwtService, healthRecordsService) {
@@ -104,12 +102,6 @@ let AuthService = class AuthService {
     }
 };
 exports.AuthService = AuthService;
-__decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [createUserDto_1.CreateUserDto]),
-    __metadata("design:returntype", Promise)
-], AuthService.prototype, "createAdmin", null);
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [users_service_1.UsersService,

@@ -94,7 +94,6 @@ export class AuthService {
     return this.usersService.findAll();
   }
 
-  @UseGuards(AuthGuard)
   async createAdmin(createUserDto: CreateUserDto): Promise<{ token: string }> {
     const { email, password } = createUserDto;
 

@@ -7,7 +7,7 @@
     <title>Admin</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="ts/script.ts" defer></script>
+    <script src="ts/admin.js" defer></script>
 </head>
 
 <body>
@@ -19,10 +19,28 @@
             ጎመን በጤና
         </div>
 
-        <button id="all-users" class="btn">all Users</button>
+        <button id="all-users">all Users</button>
+        <div id="user-list"></div>
+        <form class="p-3 mt-3" id="create-admin-form">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="name" id="name" placeholder="Enter your Full-Name">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-envelope"></span>
+                <input type="email" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="password" placeholder="Password" minlength="8">
+            </div>
+            <button class="btn mt-3" id="signup-btn">create another Admin</button>
+            <div class="text-center" id="error-message">
         </form>
 
-    </div>
+        </form>
+
+        </div>
 
 
 </body>

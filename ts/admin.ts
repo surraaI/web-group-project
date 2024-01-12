@@ -1,6 +1,10 @@
-const loginform = document.getElementById("loginForm");
-if (loginForm) {
-  loginForm.addEventListener('submit', async function(event) {
+const LoginForm = document.getElementById('loginForm');
+interface User {
+  name: string;
+  email: string;
+}
+if (LoginForm) {
+  LoginForm.addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevent form submission
 
     const emailElement = document.getElementById('email') as HTMLInputElement | null;
@@ -28,17 +32,19 @@ if (loginForm) {
           const data = await response.json();
           const token: string = data.token; // Assuming the token is returned as 'token' property in the response
 
-        // Store the token in local storage
-        storeToken(token);
-          console.log('login successful:', data);
+          // Store the token in local storage
+          StoreToken(token);
+          console.log('Login successful:', data);
           window.location.href = 'adminPage.html';
 
+          // Redirect to the appropriate page based on the user's role
+          // redirectBasedOnRole(data.role); // Assuming the role is returned as 'role' property in the response
         } else {
           // Handle login failure
           const data = await response.json();
           console.error('Login failed:', data.error);
           // Create and display an error message element
-          const errormessage = document.getElementById("error-message") as HTMLElement;
+          const errormessage = document.getElementById('error-message') as HTMLElement;
           errormessage.innerText = '';
           const errorMessageElement = document.createElement('p');
           errorMessageElement.innerText = 'Invalid username or password.';
@@ -49,6 +55,127 @@ if (loginForm) {
         // Handle network error
         console.error('Error occurred during login:', error);
       }
+    }
+  });
+}
+
+// Function to store the token in local storage
+function StoreToken(token: string) {
+  localStorage.setItem('token', token);
+}
+
+// Function to retrieve the token from local storage
+function GetToken(): string | null {
+  return localStorage.getItem('token');
+}
+
+
+const createAdminForm = document.getElementById('create-admin-form');
+if (createAdminForm) {
+  createAdminForm.addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const nameElement = document.getElementById('name') as HTMLInputElement | null;
+    const emailElement = document.getElementById('email') as HTMLInputElement | null;
+    const passwordElement = document.getElementById('password') as HTMLInputElement | null;
+
+    if (nameElement && emailElement && passwordElement) {
+      const name = nameElement.value;
+      const email = emailElement.value;
+      const password = passwordElement.value;
+
+      const createUserDto = {
+        name,
+        email,
+        password
+      };
+
+      try {
+        const token = GetToken(); // Retrieve the token from local storage
+
+        const response = await fetch('http://localhost:3000/auth/createAdmin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+          },
+          body: JSON.stringify(createUserDto),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const token = data.token; // Assuming the token is returned as 'token' property in the response
+
+          // Store the token in local storage
+          StoreToken(token);
+
+          console.log('created successful:', data);
+          // window.location.href = 'adminPage.html';
+
+        } else if (response.status === 409) {
+          // Email already exists
+          const data = await response.json();
+          console.error('creating failed:', data.error);
+          // Create and display an error message element
+
+        } else {
+          // Handle signup failure
+          const errormsg = document.getElementById('error-message') as HTMLElement;
+          const errorMessageElement = document.createElement('p');
+          errormsg.innerText = '';
+          errorMessageElement.innerText = '';
+          errorMessageElement.innerText = 'Email already exists. Please login instead.';
+          errorMessageElement.style.color = 'red';
+          errormsg.appendChild(errorMessageElement);
+
+          console.error('creating another admin failed:', response.json());
+        }
+      } catch (error) {
+        // Handle network error
+        console.error('Error occurred during creating another admin:', error);
+      }
+    }
+  });
+}
+// Fetch all users from localhost
+const allUsersButton = document.getElementById('all-users');
+if (allUsersButton) {
+  allUsersButton.addEventListener('click', async function(event) {
+    event.preventDefault();
+
+    try {
+      const token = GetToken(); 
+      const response = await fetch('http://localhost:3000/auth/findAll',{
+        method: 'Get',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+          },
+
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log('All users:', data);
+
+        // Update the HTML with the user names
+        const userListContainer = document.getElementById('user-list');
+        if (userListContainer) {
+          // Clear existing user names
+          userListContainer.innerHTML = '';
+
+          // Create a list item for each user name
+          data.forEach((user: User) => {
+            const listItem = document.createElement('li');
+            listItem.innerText = user.name;
+            listItem.style.color = 'black';
+            userListContainer.appendChild(listItem);
+          });
+        }
+      } else {
+        console.error('Failed to fetch all users:', response.status);
+      }
+    } catch (error) {
+      console.error('Error occurred during fetch:', error);
     }
   });
 }

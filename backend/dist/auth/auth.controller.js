@@ -114,6 +114,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "createAdmin", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Get)('my-health-records'),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),

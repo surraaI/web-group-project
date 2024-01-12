@@ -83,7 +83,7 @@ export class AuthController {
   createAdmin(@Body() createUserDto: CreateUserDto) {
     return this.authService.createAdmin(createUserDto);
   }
-
+  @UseGuards(AuthGuard)
   @Get('my-health-records')
   myHealthRecords(@Req() request) {
     return this.authService.getHealthRecordsByUserId(request)
