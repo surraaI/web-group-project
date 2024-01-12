@@ -57,17 +57,39 @@ let HealthRecordsService = class HealthRecordsService {
     async findOne(id) {
         return this.healthRecordModel.findById(id).exec();
     }
-    async update(id, updateHealthRecordDto) {
-        return this.healthRecordModel
+    async update(id, updateHealthRecordDto, request) {
+        const token = this.extractTokenFromHeader(request);
+        const userId = this.extractIdFromToken(token);
+        const updatedRecord = await this.healthRecordModel
             .findByIdAndUpdate(id, updateHealthRecordDto, { new: true })
             .exec();
+        const user = await this.userModel.findById(userId).exec();
+        if (user) {
+            const index = user.myhealthRecords.findIndex(record => record.id === id);
+            if (index !== -1) {
+                user.myhealthRecords[index] = updatedRecord;
+                await user.save();
+            }
+        }
+        return updatedRecord;
     }
     async getRecordsByUserId(userId) {
         const user = this.userModel.findById(userId).exec();
         return (await user).myhealthRecords;
     }
-    async remove(id) {
-        return this.healthRecordModel.findOneAndDelete({ _id: id }).exec();
+    async remove(id, request) {
+        const token = this.extractTokenFromHeader(request);
+        const userId = this.extractIdFromToken(token);
+        const deletedRecord = await this.healthRecordModel.findOneAndDelete({ _id: id }).exec();
+        const user = await this.userModel.findById(userId).exec();
+        if (user) {
+            const index = user.myhealthRecords.findIndex(record => record.id === id);
+            if (index !== -1) {
+                user.myhealthRecords.splice(index, 1);
+                await user.save();
+            }
+        }
+        return deletedRecord;
     }
 };
 exports.HealthRecordsService = HealthRecordsService;

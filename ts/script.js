@@ -153,7 +153,7 @@ if (HealthRecordForm && tableBody) {
                     amountOfWaterTaken
                 };
                 try {
-                    const token = getToken(); // Retrieve the token from storagenpx tsc
+                    const token = getToken(); // Retrieve the token from storage
                     if (token) {
                         const response = yield fetch('http://localhost:3000/health-records/createRecord', {
                             method: 'POST',
@@ -169,15 +169,19 @@ if (HealthRecordForm && tableBody) {
                             console.log(data);
                             // Create a new row in the table
                             const newRow = document.createElement('tr');
+                            newRow.setAttribute('data-record-id', data._id);
                             newRow.innerHTML = `
-            <td>${data.date}</td>
-            <td>${data.caloriesAmount}</td>
-            <td>${data.weight}</td>
-            <td>${data.height}</td>
-            <td>${data.foodType}</td>
-            <td>${data.minutesOfExercise}</td>
-            <td>${data.amountOfWaterTaken}</td>
-          `;
+              <td class="editable-cell">${data.date}</td>
+              <td class="editable-cell">${data.caloriesAmount}</td>
+              <td class="editable-cell">${data.weight}</td>
+              <td class="editable-cell">${data.height}</td>
+              <td class="editable-cell">${data.foodType}</td>
+              <td class="editable-cell">${data.minutesOfExercise}</td>
+              <td class="editable-cell">${data.amountOfWaterTaken}</td>
+              <td>
+                <button class="delete-button">Delete</button>
+              </td>
+            `;
                             tableBody.appendChild(newRow);
                             // Clear the form inputs
                             HealthRecordForm.reset();
@@ -196,6 +200,84 @@ if (HealthRecordForm && tableBody) {
             }
         });
     });
+    // Add event listener for inline editing
+    tableBody.addEventListener('click', (event) => {
+        const cell = event.target;
+        if (cell.classList.contains('editable-cell')) {
+            const input = document.createElement('input');
+            input.value = cell.textContent || '';
+            input.addEventListener('blur', () => __awaiter(void 0, void 0, void 0, function* () {
+                const row = cell.parentNode;
+                const recordId = row.getAttribute('data-record-id');
+                const columnIndex = Array.from(row.cells).indexOf(cell);
+                cell.textContent = input.value;
+                input.remove();
+                if (recordId) {
+                    try {
+                        const token = getToken(); // Retrieve the token from storage
+                        if (token) {
+                            const updateData = {
+                                [columnIndex]: input.value
+                            };
+                            const response = yield fetch(`http://localhost:3000/health-records/update/${recordId}`, {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}` // Include the token in the authorization header
+                                },
+                                body: JSON.stringify(updateData),
+                            });
+                            if (response.ok) {
+                                console.log(`Record with ID ${recordId} updated successfully`);
+                            }
+                            else {
+                                console.error(`Failed to update record with ID ${recordId}: ${response.status}`);
+                            }
+                        }
+                    }
+                    catch (error) {
+                        console.error('Error occurred during record update:', error);
+                    }
+                }
+            }));
+            cell.textContent = '';
+            cell.appendChild(input);
+            input.focus();
+        }
+    });
+    // Add event listener for delete buttons
+    tableBody.addEventListener('click', (event) => __awaiter(void 0, void 0, void 0, function* () {
+        var _a;
+        const button = event.target;
+        if (button.classList.contains('delete-button')) {
+            const row = (_a = button.parentNode) === null || _a === void 0 ? void 0 : _a.parentNode;
+            const recordId = row.getAttribute('data-record-id');
+            if (recordId) {
+                try {
+                    const token = getToken(); // Retrieve the token from storage
+                    if (token) {
+                        const response = yield fetch(`http://localhost:3000/health-records/delete/${recordId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}` // Include the token in the authorization header
+                            },
+                        });
+                        if (response.ok) {
+                            row.remove();
+                            console.log(`Record with ID ${recordId} deleted successfully`);
+                        }
+                        else {
+                            console.error(`Failed to delete record with ID ${recordId}: ${response.status}`);
+                        }
+                    }
+                }
+                catch (error) {
+                    console.error('Error occurred during record deletion:', error);
+                }
+            }
+        }
+    }));
 }
 //login as admin
 const loginAsAdmin = document.getElementById("login-as-admin");

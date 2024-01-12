@@ -37,18 +37,22 @@ export class HealthRecordsController {
   findOne(@Param('id') id: string) {
     return this.healthRecordsService.findOne(id);
   }
-  @UseGuards(AuthGuard)
   @Patch('update/:id')
   update(
     @Param('id') id: string,
     @Body() updateHealthRecordDto: UpdateHealthRecordDto,
+    @Req() request: Request,
   ) {
-    return this.healthRecordsService.update(id, updateHealthRecordDto);
-  }
+    return this.healthRecordsService.update(id, updateHealthRecordDto, request);
+}
 
-  @UseGuards(AuthGuard)
-  @Delete('remove/:id')
-  remove(@Param('id') id: string) {
-    return this.healthRecordsService.remove(id);
-  }
+  // @UseGuards(AuthGuard)
+  // @Delete('remove/:id')
+  // remove(@Param('id') id: string) {
+  //   return this.healthRecordsService.remove(id);
+  // }
+  @Delete('delete/:id')
+  remove(@Param('id') id: string, @Req() request: Request) {
+    return this.healthRecordsService.remove(id, request);
+}
 }

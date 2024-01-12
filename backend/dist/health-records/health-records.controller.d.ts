@@ -8,6 +8,6 @@ export declare class HealthRecordsController {
     createRecord(createHealthRecordDto: CreateHealthRecordDto, request: Request): Promise<import("./schemas/healthRecord.schema").HealthRecord>;
     findAll(): Promise<import("./schemas/healthRecord.schema").HealthRecord[]>;
     findOne(id: string): Promise<import("./schemas/healthRecord.schema").HealthRecord>;
-    update(id: string, updateHealthRecordDto: UpdateHealthRecordDto): Promise<import("./schemas/healthRecord.schema").HealthRecord>;
-    remove(id: string): Promise<import("./schemas/healthRecord.schema").HealthRecord>;
+    update(id: string, updateHealthRecordDto: UpdateHealthRecordDto, request: Request): Promise<import("./schemas/healthRecord.schema").HealthRecord>;
+    remove(id: string, request: Request): Promise<import("./schemas/healthRecord.schema").HealthRecord>;
 }

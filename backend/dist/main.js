@@ -2,12 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
-const platform_express_1 = require("@nestjs/platform-express");
-const express = require("express");
+const cors = require("cors");
 async function bootstrap() {
-    const server = express();
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_express_1.ExpressAdapter(server));
-    app.enableCors();
+    const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.use(cors({
+        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+        origin: true,
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+    }));
     await app.listen(3000);
 }
 bootstrap();
