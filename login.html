@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <title>Login</title>
+    <script src="ts/script.js" defer></script>
 </head>
+
 <body>
+    <button class="btn mt-3" id="login-as-admin">Login as admin</button>
 
     <div class="wrapper">
         <div class="logo">
@@ -15,21 +19,23 @@
         <div class="text-center mt-3 name">
             ጎመን በጤና
         </div>
-        <form class="p-3 mt-3">
+        <form class="p-3 mt-3" id="loginForm">
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="text" name="userName" id="userName" placeholder="Username">
+                <input type="email" name="email" id="email" placeholder="email">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="password" name="password" id="pwd" placeholder="Password">
+                <input type="password" name="password" id="pwd" placeholder="Password" minlength="8">
             </div>
             <button class="btn mt-3">Login</button>
         </form>
         <div class="text-center fs-6">
             <a href="#">Forget password?</a> or <a href="signup.html">Sign up</a>
         </div>
+        <div id="error-message" class="text-center fs-6"></div>
     </div>
 
 </body>
+
 </html>
