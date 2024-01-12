@@ -283,6 +283,6 @@ if (HealthRecordForm && tableBody) {
 const loginAsAdmin = document.getElementById("login-as-admin");
 if (loginAsAdmin) {
     loginAsAdmin.addEventListener("click", () => {
-        window.location.href = "/admin_dashboard.html";
+        window.location.href = "/loginAsadmin.html";
     });
 }
