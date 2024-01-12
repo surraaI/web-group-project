@@ -11,7 +11,7 @@ body {
     color: #fff;
     overflow-x: hidden;
     height: 100%;
-    background-color: #3d2e57!important;
+    background-color: #3d2e57 !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -229,6 +229,7 @@ header {
     border: none !important;
     box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893)!important;
     background-color: #5d556b!important; 
+
 }
 .card {
     margin-left: auto;
@@ -327,7 +328,7 @@ h1 {
     object-fit: cover;
     margin-bottom: 20px;
     float:left;
-    margin-right: 30px;
+    margin-right: 30px ;
 }
 
 nav {
@@ -361,11 +362,11 @@ th, td {
 }
 
 th {
-    background-color: #5d556b;
+    background-color: #5d556b !important;
 }
 
 td {
-    background-color: #5d556b;
+    background-color: #5d556b !important;
 }
 
 
