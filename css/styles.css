@@ -58,7 +58,7 @@ body {
     outline: none;
     background: none;
     font-size: 1.2rem;
-    color: #666;
+    color: #666 !important;
     padding: 10px 15px 10px 10px;
 }
 
@@ -66,37 +66,37 @@ body {
     padding-left: 10px;
     margin-bottom: 20px;
     border-radius: 20px;
-    box-shadow: inset 6px 6px 6px #cbced1, inset -8px -8px 8px #fff;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -8px -8px 8px #fff !important;
 }
 
 .wrapper .form-field .fas {
-    color: #555;
+    color: #555 !important;
 }
 
 .wrapper .btn {
     box-shadow: none;
     width: 100%;
     height: 40px;
-    background-color: rgba(174, 146, 210, 0.893);
+    background-color: rgba(174, 146, 210, 0.893) !important;
     color: #fff;
     border-radius: 25px;
     box-shadow: 3px 3px 3px #b1b1b1,
-        -3px -3px 3px #fff;
+        -3px -3px 3px #fff !important;
     letter-spacing: 1.3px;
 }
 
 .wrapper .btn:hover {
-    background-color: rgba(174, 146, 210, 0.893);
+    background-color: rgba(174, 146, 210, 0.893) !important;
 }
 
 .wrapper a {
     text-decoration: none;
     font-size: 0.8rem;
-    color: rgba(126, 72, 196);
+    color: rgba(126, 72, 196) !important;
 }
 
 .wrapper a:hover {
-    color: rgba(174, 146, 210, 0.893);
+    color: rgba(174, 146, 210, 0.893) !important;
 }
 
 @media(max-width: 380px) {
@@ -114,12 +114,12 @@ body {
     margin-top: 60px;
     margin-bottom: 60px;
     border: none !important;
-    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893);
+    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893) !important;
     background-color: #5d556b !important;
 }
 
 .blue-text {
-    color: rgba(174, 146, 210, 0.893);
+    color: rgba(174, 146, 210, 0.893) !important;
 }
 
 .form-control-label {
@@ -180,7 +180,7 @@ h3 {
 }
 
 .btn-primary {
-    background-color: rgba(174, 146, 210, 0.893); 
+    background-color: rgba(174, 146, 210, 0.893) !important; 
     color: white;
     font-size: 1.2em; 
 }
@@ -188,7 +188,7 @@ h3 {
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #3d2e57;
+    background-color: #3d2e57 !important;
     color: #fff;
 }
 
@@ -199,8 +199,8 @@ header {
 }
 
 .navbar {
-    background-color: #343a40; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    background-color: #343a40 !important; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important; 
 }
 
 .navbar-brand {
@@ -227,8 +227,9 @@ header {
     margin-top: 60px;
     margin-bottom: 60px;
     border: none !important;
-    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893) !important;
-    background-color: #5d556b !important; 
+    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893)!important;
+    background-color: #5d556b!important; 
+
 }
 .card {
     margin-left: auto;
@@ -238,8 +239,8 @@ header {
     margin-top: 60px;
     margin-bottom: 60px;
     border: none !important;
-    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893);
-    background-color: #5d556b; 
+    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893)  !important;
+    background-color: #5d556b !important; 
 }
 .cards {
     margin-left: auto;
@@ -249,8 +250,8 @@ header {
     margin-top: 60px;
     margin-bottom: 60px;
     border: none !important;
-    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893);
-    background-color: #5d556b; 
+    box-shadow: 0 6px 12px 0 rgba(174, 146, 210, 0.893) !important;
+    background-color: #5d556b !important; 
 }
 
 .card-body {
@@ -259,7 +260,7 @@ header {
 
 label {
     font-size: 18px;
-    color: rgba(174, 146, 210, 0.893);
+    color: rgba(174, 146, 210, 0.893) !important;
 }
 
 .form-control {
@@ -268,7 +269,7 @@ label {
 
 
 .btn-primary {
-    background-color: rgba(174, 146, 210, 0.893);
+    background-color: rgba(174, 146, 210, 0.893) !important;
     border: none;
     padding: 12px 24px;
     font-size: 18px;
@@ -284,7 +285,7 @@ h1, h2{
 }
 
 h4{
-    color: rgba(174, 146, 210, 0.893);
+    color: rgba(174, 146, 210, 0.893) !important;
     text-align: center;
 }
 
@@ -367,4 +368,5 @@ th {
 td {
     background-color: #5d556b !important;
 }
+
 
