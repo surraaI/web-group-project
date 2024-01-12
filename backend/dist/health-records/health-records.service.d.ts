@@ -39,7 +39,7 @@ export declare class HealthRecordsService {
     private extractIdFromToken;
     findAll(): Promise<HealthRecord[]>;
     findOne(id: string): Promise<HealthRecord>;
-    update(id: string, updateHealthRecordDto: UpdateHealthRecordDto): Promise<HealthRecord>;
+    update(id: string, updateHealthRecordDto: UpdateHealthRecordDto, request: Request): Promise<HealthRecord>;
     getRecordsByUserId(userId: string): Promise<HealthRecord[]>;
-    remove(id: string): Promise<HealthRecord>;
+    remove(id: string, request: Request): Promise<HealthRecord>;
 }

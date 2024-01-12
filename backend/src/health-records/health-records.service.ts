@@ -10,6 +10,7 @@ import { User } from 'src/users/schemas/user.schema';
 import { jwtConstants } from 'src/auth/constants';
 import { Role } from 'src/auth/enums/role.enum';
 import { UsersService } from '../users/users.service';
+import { request } from 'http';
 
 @Injectable()
 export class HealthRecordsService {
@@ -68,17 +69,54 @@ export class HealthRecordsService {
   async update(
     id: string,
     updateHealthRecordDto: UpdateHealthRecordDto,
+    request: Request,
   ): Promise<HealthRecord> {
-    return this.healthRecordModel
+    const token = this.extractTokenFromHeader(request);
+    const userId = this.extractIdFromToken(token);
+    const updatedRecord = await this.healthRecordModel
       .findByIdAndUpdate(id, updateHealthRecordDto, { new: true })
       .exec();
+  
+    // Update the health record of the user with userId
+    const user = await this.userModel.findById(userId).exec();
+    if (user) {
+      // Find the index of the health record within the array
+      const index = user.myhealthRecords.findIndex(record => record.id === id);
+      if (index !== -1) {
+        // Update the specific health record within the array
+        user.myhealthRecords[index] = updatedRecord;
+  
+        // Save the user object with the updated health record
+        await user.save();
+      }
+    }
+    return updatedRecord;
   }
   async getRecordsByUserId(userId: string): Promise<HealthRecord[]> {
     const user = this.userModel.findById(userId).exec();
     return (await user).myhealthRecords;
   }
 
-  async remove(id: string): Promise<HealthRecord> {
-    return this.healthRecordModel.findOneAndDelete({ _id: id }).exec();
+  async remove(id: string, request: Request): Promise<HealthRecord> {
+    const token = this.extractTokenFromHeader(request);
+    const userId = this.extractIdFromToken(token);
+  
+    // Find and remove the health record from the healthRecordModel
+    const deletedRecord = await this.healthRecordModel.findOneAndDelete({ _id: id }).exec();
+  
+    // Update the health record array of the user with userId
+    const user = await this.userModel.findById(userId).exec();
+    if (user) {
+      const index = user.myhealthRecords.findIndex(record => record.id === id);
+      if (index !== -1) {
+        // Remove the health record from the user's healthRecord array
+        user.myhealthRecords.splice(index, 1);
+  
+        // Save the user object with the updated health record array
+        await user.save();
+      }
+    }
+  
+    return deletedRecord;
   }
 }

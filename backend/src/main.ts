@@ -1,12 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ExpressAdapter } from '@nestjs/platform-express';
-import * as express from 'express';
+import * as cors from 'cors';
 
 async function bootstrap() {
-  const server = express();
-  const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
-  app.enableCors();
+  const app = await NestFactory.create(AppModule);
+
+  // Enable CORS and allow PATCH method
+  app.use(
+    cors({
+      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+      origin: true,
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
+    }),
+  );
   await app.listen(3000);
 }
 bootstrap();

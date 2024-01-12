@@ -31,11 +31,11 @@ let HealthRecordsController = class HealthRecordsController {
     findOne(id) {
         return this.healthRecordsService.findOne(id);
     }
-    update(id, updateHealthRecordDto) {
-        return this.healthRecordsService.update(id, updateHealthRecordDto);
+    update(id, updateHealthRecordDto, request) {
+        return this.healthRecordsService.update(id, updateHealthRecordDto, request);
     }
-    remove(id) {
-        return this.healthRecordsService.remove(id);
+    remove(id, request) {
+        return this.healthRecordsService.remove(id, request);
     }
 };
 exports.HealthRecordsController = HealthRecordsController;
@@ -63,20 +63,20 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], HealthRecordsController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Patch)('update/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_health_record_dto_1.UpdateHealthRecordDto]),
+    __metadata("design:paramtypes", [String, update_health_record_dto_1.UpdateHealthRecordDto, Object]),
     __metadata("design:returntype", void 0)
 ], HealthRecordsController.prototype, "update", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
-    (0, common_1.Delete)('remove/:id'),
+    (0, common_1.Delete)('delete/:id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], HealthRecordsController.prototype, "remove", null);
 exports.HealthRecordsController = HealthRecordsController = __decorate([
