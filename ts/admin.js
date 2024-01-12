@@ -130,7 +130,6 @@ if (createAdminForm) {
         });
     });
 }
-// Fetch all users from localhost
 const allUsersButton = document.getElementById('all-users');
 if (allUsersButton) {
     allUsersButton.addEventListener('click', function (event) {
@@ -139,7 +138,7 @@ if (allUsersButton) {
             try {
                 const token = GetToken();
                 const response = yield fetch('http://localhost:3000/auth/findAll', {
-                    method: 'Get',
+                    method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
@@ -148,16 +147,41 @@ if (allUsersButton) {
                 if (response.ok) {
                     const data = yield response.json();
                     console.log('All users:', data);
-                    // Update the HTML with the user names
+                    // Update the HTML with the user names and buttons
                     const userListContainer = document.getElementById('user-list');
                     if (userListContainer) {
-                        // Clear existing user names
+                        // Clear existing user names and buttons
                         userListContainer.innerHTML = '';
+                        // Create a list item for each user name
+                        // ...
                         // Create a list item for each user name
                         data.forEach((user) => {
                             const listItem = document.createElement('li');
-                            listItem.innerText = user.name;
                             listItem.style.color = 'black';
+                            // Create a span element for the user name
+                            const nameSpan = document.createElement('span');
+                            nameSpan.innerText = 'Full-name: ' + user.name;
+                            // Create a span element for the user email
+                            const emailSpan = document.createElement('span');
+                            emailSpan.innerText = 'Email: ' + user.email;
+                            emailSpan.style.marginLeft = '50px'; // 
+                            emailSpan.style.display = 'block';
+                            const deleteButton = document.createElement('button');
+                            deleteButton.innerText = 'Delete';
+                            deleteButton.style.marginRight = '10px'; // Add margin to create a gap
+                            deleteButton.addEventListener('click', () => {
+                                deleteUser(user._id);
+                            });
+                            const editButton = document.createElement('button');
+                            editButton.innerText = 'Edit';
+                            editButton.style.marginRight = '10px'; // Add margin to create a gap
+                            editButton.addEventListener('click', () => {
+                                editUser(user._id);
+                            });
+                            listItem.appendChild(nameSpan);
+                            listItem.appendChild(emailSpan);
+                            listItem.appendChild(deleteButton);
+                            listItem.appendChild(editButton);
                             userListContainer.appendChild(listItem);
                         });
                     }
@@ -170,5 +194,65 @@ if (allUsersButton) {
                 console.error('Error occurred during fetch:', error);
             }
         });
+    });
+}
+function deleteUser(userId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const token = GetToken();
+            const response = yield fetch(`http://localhost:3000/auth/deleteUser/${userId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+                },
+            });
+            if (response.ok) {
+                console.log('User deleted successfully!');
+                // Refresh the user list
+                if (allUsersButton) {
+                    allUsersButton.dispatchEvent(new Event('click'));
+                }
+            }
+            else {
+                console.error('Failed to delete user:', response.status);
+            }
+        }
+        catch (error) {
+            console.error('Error occurred during delete:', error);
+        }
+    });
+}
+function editUser(userId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            // Get the updated name and email from the user
+            const newName = prompt('Enter the new name:');
+            const newEmail = prompt('Enter the new email:');
+            if (newName && newEmail) {
+                const token = GetToken();
+                const response = yield fetch(`http://localhost:3000/auth/updateUser/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+                    },
+                    body: JSON.stringify({ name: newName, email: newEmail }),
+                });
+                if (response.ok) {
+                    console.log('User edited successfully!');
+                    // Refresh the user list
+                    if (allUsersButton) {
+                        allUsersButton.dispatchEvent(new Event('click'));
+                    }
+                }
+                else {
+                    console.error('Failed to edit user:', response.status);
+                }
+            }
+        }
+        catch (error) {
+            console.error('Error occurred during edit:', error);
+        }
     });
 }
